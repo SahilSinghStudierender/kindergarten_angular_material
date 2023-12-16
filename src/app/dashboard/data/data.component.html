@@ -64,11 +64,17 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
         </div>
-        <div class="row mt-2">
-            <div class="col-12 d-flex justify-content-center">
-                <button mat-flat-button [color]="page == currentPage ? 'warn' : 'basic'" (click)="selectPage(page)"
-                        type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
-            </div>
+        <div class="row">
+<!--            <div class="col-12 d-flex justify-content-center">-->
+<!--                <button mat-flat-button [color]="page == currentPage ? 'warn' : 'basic'" (click)="selectPage(page)"-->
+<!--                        type="button" *ngFor="let page of returnAllPages()">{{page}}</button>-->
+<!--            </div>-->
+            <mat-paginator [length]="storeService.childrenTotalCount"
+                           [pageSize]="CHILDREN_PER_PAGE"
+                           [pageIndex]="currentPage"
+                           aria-label="Select page"
+                            (page)="selectPage($event)">
+            </mat-paginator>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BackendService} from 'src/app/shared/backend.service';
 import {CHILDREN_PER_PAGE} from 'src/app/shared/constants';
 import {StoreService} from 'src/app/shared/store.service';
@@ -10,7 +10,7 @@ import {ChildResponse} from "../../shared/interfaces/Child";
     templateUrl: './data.component.html',
     styleUrls: ['./data.component.scss']
 })
-export class DataComponent implements OnInit, OnChanges {
+export class DataComponent implements OnInit {
 
     constructor(public storeService: StoreService, private backendService: BackendService) {
 
@@ -27,10 +27,6 @@ export class DataComponent implements OnInit, OnChanges {
         this.backendService.getChildren(this.currentPage);
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
-    }
-
     getAge(birthDate: string) {
         var today = new Date();
         var birthDateTimestamp = new Date(birthDate);
@@ -43,9 +39,9 @@ export class DataComponent implements OnInit, OnChanges {
     }
 
     selectPage(i: any) {
-        let currentPage = i;
+        let currentPage = i.pageIndex;
         this.selectPageEvent.emit(currentPage)
-        this.backendService.getChildren(currentPage);
+        this.backendService.getChildren(currentPage + 1);
     }
 
     public returnAllPages() {
@@ -60,6 +56,8 @@ export class DataComponent implements OnInit, OnChanges {
     public cancelRegistration(childId: string) {
         this.backendService.deleteChildData(childId, this.currentPage);
     }
+
+    public CHILDREN_PER_PAGE = CHILDREN_PER_PAGE;
 }
 
 
