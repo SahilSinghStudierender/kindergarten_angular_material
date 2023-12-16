@@ -24,7 +24,6 @@ export class BackendService {
         this.storeService.loadingChildren = true;
         this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}`, {observe: 'response'}).subscribe(data => {
             this.storeService.children = data.body!;
-            this.storeService.childrenDataSource = new MatTableDataSource(data.body!);
             this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
             this.storeService.loadingChildren = false;
         });
@@ -32,7 +31,12 @@ export class BackendService {
 
     public addChildData(child: Child, page: number) {
         this.http.post('http://localhost:5000/childs', child).subscribe(_ => {
+            this.storeService.saveChildSuccess = true;
             this.getChildren(page);
+
+            setTimeout(() => {
+                this.storeService.saveChildSuccess = false;
+            }, 3000)
         })
     }
 

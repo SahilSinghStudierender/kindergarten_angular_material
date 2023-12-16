@@ -13,7 +13,7 @@ export class StoreService {
 
     public kindergardens: Kindergarden[] = [];
     public children: ChildResponse[] = [];
-    public childrenDataSource = new MatTableDataSource<ChildResponse>([]);
     public loadingChildren: boolean = true;
+    public saveChildSuccess: boolean = false;
     public childrenTotalCount: number = 0;
 }
