@@ -1,27 +1,5 @@
-<!--<div class="container">-->
-<!--    <div class="row justify-content-center align-items-center">-->
-<!--        <p class="col-xl-2 col-lg-3">Name</p>-->
-<!--        <p class="col-xl-2 col-lg-3">Kindergarten</p>-->
-<!--        <p class="col-xl-1 col-lg-1">Adresse</p>-->
-<!--        <p class="col-xl-1 col-lg-1">Alter</p>-->
-<!--        <p class="col-xl-1 col-lg-1">Geburtsdatum</p>-->
-<!--        <p class="col-xl-1 col-lg-1"></p>-->
-<!--    </div>-->
-<!--    <div *ngFor="let child of storeService.children" class="row justify-content-center align-items-center">-->
-<!--        <p class="col-xl-2 col-lg-3">{{child.name}}</p>-->
-<!--        <p class="col-xl-2 col-lg-3">{{child.kindergarden.name}}</p>-->
-<!--        <p class="col-xl-1 col-lg-1">{{child.kindergarden.address}}</p>-->
-<!--        <p class="col-xl-1 col-lg-1">{{getAge(child.birthDate)}}</p>-->
-<!--        <p class="col-xl-1 col-lg-1">{{child.birthDate | date:'longDate'}}</p>-->
-<!--        <div class="col-xl-1 col-lg-1">-->
-<!--            <button (click)="cancelRegistration(child.id)">Kind abmelden</button>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--</div>-->
-
-<div class="container my-3">
-    <div *ngIf="storeService.loadingChildren" class="row justify-content-center ">
+<div class="container-fluid">
+    <div *ngIf="storeService.loadingChildren" class="row justify-content-center my-5">
         <mat-spinner style="height: 50px; width: 50px;"></mat-spinner>
     </div>
     <div *ngIf="!storeService.loadingChildren">
@@ -65,10 +43,6 @@
             </table>
         </div>
         <div class="row">
-<!--            <div class="col-12 d-flex justify-content-center">-->
-<!--                <button mat-flat-button [color]="page == currentPage ? 'warn' : 'basic'" (click)="selectPage(page)"-->
-<!--                        type="button" *ngFor="let page of returnAllPages()">{{page}}</button>-->
-<!--            </div>-->
             <mat-paginator [length]="storeService.childrenTotalCount"
                            [pageSize]="CHILDREN_PER_PAGE"
                            [pageIndex]="currentPage"
