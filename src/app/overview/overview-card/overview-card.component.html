@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-content class="p-0">
+        <div class="d-flex">
+            <img
+                    [src]="kindergarden?.imageUrl"
+                    width="200px"
+            />
+            <div class="mx-3">
+                <h1 class="m-0">{{kindergarden?.name}} ({{getType()}})</h1>
+                <small>{{kindergarden?.address}}</small><br><br>
+                <span>Betreiber: {{kindergarden?.betreiber}}</span>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

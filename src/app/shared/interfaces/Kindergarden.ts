@@ -3,6 +3,7 @@ export interface Kindergarden {
     name: string;
     address: string;
     betreiber: string;
+    imageUrl: String;
     typ: Typ,
   }
 

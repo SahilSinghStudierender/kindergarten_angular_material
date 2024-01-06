@@ -22,6 +22,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSortModule} from "@angular/material/sort";
+import { OverviewComponent } from './overview/overview.component';
+import { OverviewCardComponent } from './overview/overview-card/overview-card.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +32,9 @@ import {MatSortModule} from "@angular/material/sort";
         AddDataComponent,
         DataComponent,
         HeaderComponent,
-        ButtonComponent
+        ButtonComponent,
+        OverviewComponent,
+        OverviewCardComponent
     ],
     imports: [
         CommonModule,

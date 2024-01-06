@@ -56,6 +56,7 @@
       "name": "Waldorfkindergarden im Zentrum Wiens",
       "address": "Oleandergasse 21, 1220 Wien",
       "betreiber": "MA 10 - Wiener Kindergärten",
+      "imageUrl": "https://kitas.rummelsberger-diakonie.de/uploads/tx_owlslider/150727_RDJ-Hasenbuck_002_G.jpg",
       "typ": 1
     },
     {
@@ -63,6 +64,7 @@
       "name": "Kindergarden der Karl Schubert Schule für seelenpflegebedürftige Kinder und Jugendliche in Wien",
       "address": "Kanitzgasse 1-3, 1230 Wien",
       "betreiber": "Verein Karl Schubertschule für Seelenpflege- bedürftige Kinder und Jugendliche in Wien",
+      "imageUrl": "https://www.kita-riedering.de/images/com_osgallery/gal-1/original/watermark/kita-riedering-kirchweg21C5F96B0-D650-FAC4-AF1C-617D0DD54383.jpg",
       "typ": 1
     },
     {
@@ -70,6 +72,7 @@
       "name": "Kindergarden der Stadt Wien",
       "address": "Audorfgasse 20, 1210 Wien",
       "betreiber": "MA 10 - Wiener Kindergärten",
+      "imageUrl": "https://villa-kunterbunt-burgsalach.de/wp-content/uploads/2020/07/DSC01240.jpg",
       "typ": 2
     },
     {
@@ -77,6 +80,7 @@
       "name": "Kindergarden der Stadt Wien",
       "address": "Moßbachergasse 20-24, 1140 Wien",
       "betreiber": "MA 10 - Wiener Kindergärten",
+      "imageUrl": "https://www.wolfurt.at/system/web/GetImage.ashx?fileid=1017506&mode=T&width=640&height=480&cts=1665398541",
       "typ": 2
     },
     {
@@ -84,6 +88,7 @@
       "name": "Montessori Kinderhaus Wien 1",
       "address": "Nußdorferstraße 6, 1090 Wien",
       "betreiber": "Montessori Kinderhaus Wien",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZmY60EKzEVjgiJKYvYViCLIdnUDpa-yFvRg&usqp=CAU",
       "typ": 1
     }
   ]
