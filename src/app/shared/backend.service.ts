@@ -5,6 +5,7 @@ import {StoreService} from './store.service';
 import {Child, ChildResponse} from './interfaces/Child';
 import {CHILDREN_PER_PAGE} from './constants';
 import {MatTableDataSource} from "@angular/material/table";
+import {tap} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -30,14 +31,15 @@ export class BackendService {
     }
 
     public addChildData(child: Child, page: number) {
-        this.http.post('http://localhost:5000/childs', child).subscribe(_ => {
-            this.storeService.saveChildSuccess = true;
-            this.getChildren(page);
+        return this.http.post('http://localhost:5000/childs', child).pipe(
+            tap(_ => {
+                this.storeService.saveChildSuccess = true;
+                this.getChildren(page);
 
-            setTimeout(() => {
-                this.storeService.saveChildSuccess = false;
-            }, 3000)
-        })
+                setTimeout(() => {
+                    this.storeService.saveChildSuccess = false;
+                }, 3000)
+            }))
     }
 
     public deleteChildData(childId: string, page: number) {
