@@ -6,6 +6,7 @@ import {Child, ChildResponse} from './interfaces/Child';
 import {CHILDREN_PER_PAGE} from './constants';
 import {MatTableDataSource} from "@angular/material/table";
 import {tap} from "rxjs";
+import {Sort} from "@angular/material/sort";
 
 @Injectable({
     providedIn: 'root'
@@ -21,11 +22,11 @@ export class BackendService {
         });
     }
 
-    public getChildren(page: number, filter: number | null = null) {
+    public getChildren(page: number, filter: number | undefined = undefined, sort: Sort | undefined = undefined) {
         this.storeService.loadingChildren = true;
         this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${
-            page}&_limit=${CHILDREN_PER_PAGE}
-            ${filter ? `&kindergardenId=${filter}` : ''}`, {observe: 'response'}).subscribe(data => {
+            page}&_limit=${CHILDREN_PER_PAGE}${filter ? `&kindergardenId=${filter}` : ''}${sort ? `&_sort=${sort.active}&_order=${sort.direction}` : ''}`,
+            {observe: 'response'}).subscribe((data) => {
             this.storeService.children = data.body!;
             this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
             this.storeService.loadingChildren = false;

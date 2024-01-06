@@ -8,20 +8,20 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <div *ngIf="storeService.loadingChildren" class="row justify-content-center my-5">
+    <div [ngClass]="storeService.loadingChildren ? '' : 'd-none'" class="row justify-content-center my-5">
         <mat-spinner style="height: 50px; width: 50px;"></mat-spinner>
     </div>
-    <div *ngIf="!storeService.loadingChildren">
+    <div [ngClass]="!storeService.loadingChildren ? '' : 'd-none'">
         <div class="row">
-            <table mat-table [dataSource]="storeService.children" class="mat-elevation-z8">
+            <table mat-table [dataSource]="storeService.children" matSort class="mat-elevation-z8">
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sortieren nach Name">Name</th>
                     <td mat-cell *matCellDef="let element"> {{element.name}}</td>
                 </ng-container>
                 <!-- Kindergarden Name Column -->
                 <ng-container matColumnDef="kindergarden.name">
-                    <th mat-header-cell *matHeaderCellDef>Kindergarten</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Kindergarten</th>
                     <td mat-cell *matCellDef="let element"> {{element.kindergarden.name}}</td>
                 </ng-container>
                 <!-- Address -->
@@ -38,6 +38,10 @@
                 <ng-container matColumnDef="birthDate">
                     <th mat-header-cell *matHeaderCellDef>Geburtsdatum</th>
                     <td mat-cell *matCellDef="let element"> {{element.birthDate}}</td>
+                </ng-container>
+                <ng-container matColumnDef="registrationDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Anmeldedatum</th>
+                    <td mat-cell *matCellDef="let element"> {{(element.registrationDate | date : 'YYYY-MM-dd')}}</td>
                 </ng-container>
                 <!-- Deletion Action -->
                 <ng-container matColumnDef="deletion">

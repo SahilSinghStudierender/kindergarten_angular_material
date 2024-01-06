@@ -1,30 +1,38 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {BackendService} from 'src/app/shared/backend.service';
 import {CHILDREN_PER_PAGE} from 'src/app/shared/constants';
 import {StoreService} from 'src/app/shared/store.service';
 import {MatTableDataSource} from "@angular/material/table";
 import {ChildResponse} from "../../shared/interfaces/Child";
+import {MatSort, Sort} from "@angular/material/sort";
 
 @Component({
     selector: 'app-data',
     templateUrl: './data.component.html',
     styleUrls: ['./data.component.scss']
 })
-export class DataComponent implements OnInit {
-
+export class DataComponent implements OnInit, AfterViewInit {
     constructor(public storeService: StoreService, private backendService: BackendService) {
 
     }
-
+    @ViewChild(MatSort) sort!: MatSort;
     @Input() currentPage!: number;
     @Output() selectPageEvent = new EventEmitter<number>();
     public page: number = 0;
     loadingChildren: boolean = true;
-    dataSource = new MatTableDataSource<ChildResponse>([]);
-    displayedColumns: string[] = ['name', 'kindergarden.name', 'kindergarden.address', 'age', 'birthDate', 'deletion'];
+    displayedColumns: string[] = ['name', 'kindergarden.name', 'kindergarden.address', 'age', 'birthDate', 'registrationDate', 'deletion'];
+    currentFilter: number | undefined = undefined;
+    currentSort: Sort | undefined = undefined;
 
     ngOnInit(): void {
         this.backendService.getChildren(this.currentPage);
+    }
+
+    ngAfterViewInit(): void {
+        this.sort.sortChange.subscribe((sortState: Sort) => {
+            this.currentSort = sortState.direction ? sortState : undefined;
+            this.backendService.getChildren(this.currentPage, this.currentFilter, this.currentSort);
+        })
     }
 
     getAge(birthDate: string) {
@@ -41,7 +49,7 @@ export class DataComponent implements OnInit {
     selectPage(i: any) {
         let currentPage = i.pageIndex;
         this.selectPageEvent.emit(currentPage)
-        this.backendService.getChildren(currentPage + 1);
+        this.backendService.getChildren(currentPage + 1, this.currentFilter, this.currentSort);
     }
 
     public returnAllPages() {
@@ -58,9 +66,9 @@ export class DataComponent implements OnInit {
     }
 
     public filterChanged(value: number | null) {
-        this.backendService.getChildren(this.currentPage, value || null);
+        this.currentFilter = value || undefined;
+        this.backendService.getChildren(this.currentPage, value || undefined, this.currentSort);
     }
-
     public CHILDREN_PER_PAGE = CHILDREN_PER_PAGE;
 }
 
