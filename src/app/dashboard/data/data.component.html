@@ -1,4 +1,13 @@
 <div class="container-fluid">
+    <div class="row">
+        <mat-form-field>
+            <mat-label>Filter nach Kindergarten</mat-label>
+            <mat-select (valueChange)="filterChanged($event)">
+                <mat-option [value]="">Filter entfernen</mat-option>
+                <mat-option *ngFor="let kindergarten of storeService.kindergardens" [value]="kindergarten.id">{{kindergarten.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
     <div *ngIf="storeService.loadingChildren" class="row justify-content-center my-5">
         <mat-spinner style="height: 50px; width: 50px;"></mat-spinner>
     </div>
@@ -47,7 +56,7 @@
                            [pageSize]="CHILDREN_PER_PAGE"
                            [pageIndex]="currentPage"
                            aria-label="Select page"
-                            (page)="selectPage($event)">
+                           (page)="selectPage($event)">
             </mat-paginator>
         </div>
     </div>

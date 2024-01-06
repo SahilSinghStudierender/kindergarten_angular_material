@@ -57,6 +57,10 @@ export class DataComponent implements OnInit {
         this.backendService.deleteChildData(childId, this.currentPage + 1);
     }
 
+    public filterChanged(value: number | null) {
+        this.backendService.getChildren(this.currentPage, value || null);
+    }
+
     public CHILDREN_PER_PAGE = CHILDREN_PER_PAGE;
 }
 
