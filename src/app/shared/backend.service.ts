@@ -46,8 +46,10 @@ export class BackendService {
     }
 
     public deleteChildData(childId: string, page: number) {
+        this.storeService.loadingChildren = true;
         this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe(_ => {
             this.getChildren(page);
+            this.storeService.loadingChildren = false;
         })
     }
 }
